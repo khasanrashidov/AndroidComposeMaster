@@ -63,7 +63,7 @@ import com.example.android.ui.theme.ComposeMasterTheme
   ## 12: Dependency Injection with Hilt
  - Setting Up Hilt in an Android Project
  - Injecting Dependencies in a Compose Application
- - Refactoring an Existing App to Use Hilt in an MVVM/MVI Context
+ - Refactoring an Existing App to Use Hilt in an MVC/MVP/MVVM/MVI Context
   ## 13: Basic Machine Learning with TensorFlow Lite
  - Introduction to TensorFlow Lite in Android
  - Integrating a Pre-trained ML Model
