@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.example.kotlingrammar","c":"JavaExample","l":"getGreeting()"},{"p":"com.example.kotlingrammar","c":"JavaExample","l":"JavaExample()","u":"%3Cinit%3E()"},{"p":"com.example.kotlingrammar","c":"JavaExample","l":"nullableFunction()"}];updateSearchResults();
