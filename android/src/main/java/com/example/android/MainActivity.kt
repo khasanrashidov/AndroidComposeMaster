@@ -14,61 +14,64 @@ import com.example.android.ui.theme.ComposeMasterTheme
 
 /**
  * # Table of Contents
-  ## 01: Setting Up and Exploring Android Studio
- - Installing Android Studio and SDKs
- - Exploring the Android Studio Interface
- - Creating a Simple Hello World App in Kotlin
- - Introduction to the Gradle Build System
- - Understanding Android Project Structure
-  ## 02: Kotlin Basics and First Steps with Jetpack Compose
- - Kotlin Syntax and Basic Programming Concepts
- - Setting up a Jetpack Compose Project
- - Building a Simple UI with Text and Buttons in Compose
-  ## 03: Compose Layouts and State Management
- - Understanding Compose Layouts (Row, Column, Box, etc.)
- - Implementing State in Compose (remember, mutableStateOf)
- - Handling User Input and Events in Compose
-  ## 04: Styling and Theming in Compose
- - Customizing Colors, Fonts, and Shapes in Compose
- - Implementing Material Design Components and Theming
- - Responsive and Adaptive UI Design in Compose
-  ## 05: OpenCV Basics and Image Processing in Android
- - Integrating the OpenCV SDK in an Android Project
- - Basic Image Processing (Loading, Displaying, and Modifying Images)
- - Developing a Simple Photo Editing App with Filters
-  ## 06: Navigation and Advanced UI in Compose
- - Implementing Navigation in Compose
- - Advanced Compose UI - Animations, Transitions
- - Building a Multi-Screen App (e.g., a Product Catalog App)
-  ## 07: Kotlin Coroutines and Asynchronous Programming
- - Basics of Coroutines and Coroutine Scopes
- - Implementing Network Calls with Retrofit and Coroutines
- - Error Handling and Loading States in Asynchronous Programming
-  ## 08: Advanced State Handling and Flow
- - Implementing StateFlow and SharedFlow
- - Building a Real-time Chat Interface
- - Advanced State Management in a Shopping Cart App
-  ## 09: Dependency Injection and Architecture
- - Introduction to Dependency Injection with Hilt
- - Architectural Patterns - MVVM and MVI
- - Case Study: Refactoring an App to MVVM/MVI with Hilt
-  ## 10: Networking and Remote Data Fetching
- - Advanced Retrofit Usage for API Calls
- - Pagination and Data Fetching Strategies
- - Handling Network Errors and Caching Strategies
-  ## 11: Data Persistence - Room Database
- - Setting Up Room Database
- - CRUD Operations in Room
- - Observing Data Changes with LiveData/Flow
-  ## 12: Dependency Injection with Hilt
- - Setting Up Hilt in an Android Project
- - Injecting Dependencies in a Compose Application
- - Refactoring an Existing App to Use Hilt in an MVC/MVP/MVVM/MVI Context
-  ## 13: Basic Machine Learning with TensorFlow Lite
- - Introduction to TensorFlow Lite in Android
- - Integrating a Pre-trained ML Model
- - Training a Simple ML Model
- - Integrating and Using a Custom TensorFlow Lite Model
+ * ## 1. Introduction to Android Development and Jetpack Compose
+ * - Overview of Android Development
+ * - Introduction to Jetpack Compose
+ * - Setting Up the Development Environment
+ * Creating a Simple Hello World App in Compose
+ * ## 2. Kotlin for Jetpack Compose
+ * - Kotlin Basics: Syntax and Key Concepts
+ * - Understanding Kotlin's Role in Compose
+ * - Kotlin Functions and Control Structures
+ * ## 3. Compose Fundamentals, Styling, and Theming
+ * - Understanding Composables and Composition
+ * - Basic UI Elements in Compose (Text, Image, Button)
+ * - Composable Layouts: Row, Column, Box, etc.
+ * - Theming and Styling in Compose
+ * - Fonts, Colors, and Shapes Customization
+ * - Implementing Dark and Light Themes
+ * ## 4. Animation and Motion in Compose
+ * - Basics of Animation in Compose
+ * - State-based Animations and Transitions
+ * - Complex Motion Layouts and Animated Graphics
+ * ## 5. Navigation and User Interactions in Compose
+ * - Implementing Navigation in Compose
+ * - Handling User Inputs and Gestures
+ * - Building Multi-Screen Applications
+ * ## 6. OpenCV in Android
+ * - Integrating OpenCV with Android
+ * - Basic Image Processing Techniques
+ * - Building a Simple Image Editing Application
+ * ## 7. State Management in Compose
+ * - Managing State and Data in Compose
+ * - Implementing State Management with State and MutableState
+ * - State Hoisting and Unidirectional Data Flow
+ * ## 8. Architectural Patterns in Android Development
+ * - Overview of MVC, MVP, MVVM, and MVI
+ * - Understanding and Implementing Each Pattern
+ * - Comparisons and Use Cases in Android Development
+ * ## 9. Networking, Repository, and Remote Data Fetching
+ * - Implementing Network Calls with Retrofit
+ * - Setting Up a Repository for Data Handling
+ * - Handling Network Errors and Caching Strategies
+ * - LiveData, StateFlow, and SharedFlow in Compose
+ * ## 10. Advanced State Management and Asynchronous Programming
+ * - Advanced Concepts in State Management
+ * - Kotlin Coroutines for Asynchronous Tasks
+ * - Building Reactive UIs with Compose and State Management Tools
+ * ## 11. Data Persistence and Dependency Injection
+ * - Room Database Integration
+ * - Integrating Room with LiveData and StateFlow
+ * - Dependency Injection with Hilt
+ * ## 12. Introduction to Machine Learning in Android
+ * - Basics of Machine Learning on Android
+ * - Integrating TensorFlow Lite in Android
+ * - Implementing a Simple ML Model in an App
+ * ## 13. Advanced Machine Learning in Android
+ * - Advanced Concepts in Machine Learning
+ * - Deep Dive into TensorFlow Lite
+ * - Building Complex ML Models
+ * - Integrating Advanced ML Models in Android Applications
  */
 
 class MainActivity : ComponentActivity() {
