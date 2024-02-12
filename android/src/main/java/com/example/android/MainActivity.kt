@@ -18,11 +18,13 @@ import com.example.android.ui.theme.ComposeMasterTheme
  * - Overview of Android Development
  * - Introduction to Jetpack Compose
  * - Setting Up the Development Environment
- * Creating a Simple Hello World App in Compose
+ * - Creating a Simple Hello World App in Compose
+ *
  * ## 2. Kotlin for Jetpack Compose
  * - Kotlin Basics: Syntax and Key Concepts
  * - Understanding Kotlin's Role in Compose
  * - Kotlin Functions and Control Structures
+ *
  * ## 3. Compose Fundamentals, Styling, and Theming
  * - Understanding Composables and Composition
  * - Basic UI Elements in Compose (Text, Image, Button)
@@ -30,49 +32,64 @@ import com.example.android.ui.theme.ComposeMasterTheme
  * - Theming and Styling in Compose
  * - Fonts, Colors, and Shapes Customization
  * - Implementing Dark and Light Themes
+ *
  * ## 4. Animation and Motion in Compose
  * - Basics of Animation in Compose
  * - State-based Animations and Transitions
  * - Complex Motion Layouts and Animated Graphics
+ *
  * ## 5. Navigation and User Interactions in Compose
  * - Implementing Navigation in Compose
  * - Handling User Inputs and Gestures
  * - Building Multi-Screen Applications
+ *
  * ## 6. OpenCV in Android
  * - Integrating OpenCV with Android
  * - Basic Image Processing Techniques
  * - Building a Simple Image Editing Application
+ *
  * ## 7. State Management in Compose
  * - Managing State and Data in Compose
  * - Implementing State Management with State and MutableState
  * - State Hoisting and Unidirectional Data Flow
+ *
  * ## 8. Architectural Patterns in Android Development
  * - Overview of MVC, MVP, MVVM, and MVI
  * - Understanding and Implementing Each Pattern
  * - Comparisons and Use Cases in Android Development
+ *
  * ## 9. Networking, Repository, and Remote Data Fetching
  * - Implementing Network Calls with Retrofit
  * - Setting Up a Repository for Data Handling
  * - Handling Network Errors and Caching Strategies
  * - LiveData, StateFlow, and SharedFlow in Compose
- * ## 10. Advanced State Management and Asynchronous Programming
+ *
+ * ## 10. Advanced State Management, Asynchronous Programming, and Testing
  * - Advanced Concepts in State Management
  * - Kotlin Coroutines for Asynchronous Tasks
  * - Building Reactive UIs with Compose and State Management Tools
+ * - Introduction to Testing in Android (Unit Tests, Instrumented Tests)
+ * - Debugging Android Applications
+ * - Using Android Studio Tools for Performance Monitoring
+ * - Implementing Continuous Integration and Continuous Deployment (CI/CD) for Android Apps
+ *
  * ## 11. Data Persistence and Dependency Injection
  * - Room Database Integration
  * - Integrating Room with LiveData and StateFlow
  * - Dependency Injection with Hilt
+ *
  * ## 12. Introduction to Machine Learning in Android
  * - Basics of Machine Learning on Android
  * - Integrating TensorFlow Lite in Android
  * - Implementing a Simple ML Model in an App
- * ## 13. Advanced Machine Learning in Android
- * - Advanced Concepts in Machine Learning
- * - Deep Dive into TensorFlow Lite
- * - Building Complex ML Models
- * - Integrating Advanced ML Models in Android Applications
+ *
+ * ## 13. Introduction to PyTorch ML in Android
+ * - Overview of Machine Learning with PyTorch on Android
+ * - Setting Up PyTorch Mobile in Android
+ * - Implementing a Simple ML Model with PyTorch in an App
+ * - Integrating PyTorch ML Models in Android Applications
  */
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
