@@ -32,6 +32,8 @@ import com.example.layout.ui.theme.ComposeMasterTheme
 /**
  * # Jetpack Compose UI Elements
  *
+ * https://developer.android.com/jetpack/compose/layouts
+ *
  * - *Text:* Used to display static or dynamic text content.
  *
  * - *TextField:* Provides a text input field for users to enter text.
@@ -86,7 +88,7 @@ import com.example.layout.ui.theme.ComposeMasterTheme
  *
  * - *ConstraintLayout:* A layout system for creating complex and responsive UIs.
  *
- * - *Scaffold:* *TopAppBar*, *BottomAppBar 8, *FloatingActionButton (FAB)*, *DrawerContent*, *Content*
+ * - *Scaffold:* *TopAppBar*, *BottomAppBar*, *FloatingActionButton (FAB)*, *DrawerContent*, *Content*
  */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
