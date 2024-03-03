@@ -1,13 +1,3 @@
-// 2023 Prof. Hong Jeong
-// Concepts: "=", "by", "remember", and  "rememberSaveable"
-// 1. remember: remember is a function that returns a value that will be remembered between recompositions.
-// 2. rememberSaveable: rememberSaveable is a function that returns a value that will be remembered between recompositions and saved to the instance state.
-// 3. rememberSaveable is a wrapper around remember that saves the value to the instance state.
-// 4. rememberSaveable is useful for saving state across process death, such as when the app is backgrounded.
-// 5. "=" and "by" are differ in accessing value.
-// 6. "=" is used to access the value directly.
-// 7. "by" is used to access the value indirectly.
-
 package com.example.state2
 
 import android.os.Bundle
@@ -36,6 +26,54 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.state2.ui.theme.ComposeMasterTheme
 
+
+/**
+ * **State Management in Jetpack Compose**
+ * Demonstrates the use of state management in Jetpack Compose with `remember` and `rememberSaveable`,
+ * and the difference between direct and delegated property access in Kotlin.
+ *
+ * - [remember]: A function that returns a value which will be preserved across recompositions.
+ *   This is useful for maintaining state within a single composition. The state held by `remember`
+ *   is not preserved through configuration changes or when the activity is restarted.
+ *
+ * - [rememberSaveable]: A specialized version of `remember` that persists the state across
+ *   configuration changes or process death, such as when the app is backgrounded and later resumed.
+ *   It uses the saved instance state mechanism to preserve values. `rememberSaveable` is particularly
+ *   useful for retaining user input or other important transient UI state across such events.
+ *
+ * - `rememberSaveable` acts as a wrapper around `remember`, extending its functionality to include
+ *   saving to the instance state. This ensures that critical UI state is not lost during app lifecycle
+ *   events that trigger recomposition.
+ *
+ * - The distinction between "=" and "by" in Kotlin for state access:
+ *   - "=" (equals): Used for directly accessing and assigning values. When you use "=", you're working
+ *     directly with the state value itself. This is straightforward but requires explicit calls to state
+ *     management functions for updates.
+ *
+ *   - "by" (delegated property): Enables delegated property access, which allows for more concise and
+ *     idiomatic access to the value. When using "by", Kotlin delegates the get and set operations of the
+ *     property to a specified delegate. In the context of Jetpack Compose, "by" is often used with
+ *     `remember` or `rememberSaveable` to provide more seamless access to mutable state without needing
+ *     to explicitly call methods on the state object. This results in cleaner and more readable code.
+ *
+ * Example Usage:
+ *
+ * With "=":
+ * ```
+ * var (counter, setCounter) = remember { mutableStateOf(0) }
+ * setCounter(counter + 1)
+ * ```
+ *
+ * With "by":
+ * ```
+ * var counter by remember { mutableStateOf(0) }
+ * counter++
+ * ```
+ *
+ * The use of "=" vs. "by" affects how you interact with state in your composables, offering flexibility
+ * between explicit method calls and delegated property access for state management.
+ */
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +91,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// Rotate screen to see the saving effects
 @Composable
 fun MyApp() {
     Column(
@@ -61,8 +100,8 @@ fun MyApp() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            "Concepts: =, by, remember, rememberSaveable",
-            style = MaterialTheme.typography.headlineLarge
+            "Concepts: = remember, by remember, rememberSaveable",
+            style = MaterialTheme.typography.headlineMedium
         )
         Spacer(Modifier.height(16.dp))
 

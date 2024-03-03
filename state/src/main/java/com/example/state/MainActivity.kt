@@ -16,6 +16,26 @@ import androidx.compose.ui.unit.sp
 import com.example.state.ui.theme.ComposeMasterTheme
 import kotlinx.coroutines.launch
 
+/**
+ * Demonstrates the implementation of state management in Jetpack Compose through various examples.
+ * State in Compose is a core concept that enables dynamic and responsive UIs. This example covers:
+ *
+ * - Basic state management with `remember` and `mutableStateOf`.
+ * - Preservation of state across configuration changes with `rememberSaveable`.
+ * - Managing lists and showing snackbars within a scaffold layout.
+ * - Utilization of coroutines for asynchronous UI actions.
+ *
+ * Principles and Tools:
+ * - **Remember and MutableState**: Used for holding observable state within a composable that
+ *   recomposes when state changes.
+ * - **RememberSaveable**: Extends `remember` to save and restore state across configuration changes
+ *   or process death.
+ * - **ScaffoldState**: Manages UI components such as snackbars and drawers in a Scaffold layout.
+ * - **Coroutines**: Used for executing asynchronous operations, such as showing a snackbar.
+ *
+ * The examples illustrate the unidirectional data flow in Compose, where UI elements automatically
+ * update in response to state changes, promoting a clear separation of concerns and simplifying state management.
+ */
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,7 +99,7 @@ fun TextInputExample() {
 
         TextField(
             value = text,
-            onValueChange = { newText -> text = newText },
+            onValueChange = { newText -> text = newText + "/" },
             label = { Text("Enter some text") }
         )
     }
