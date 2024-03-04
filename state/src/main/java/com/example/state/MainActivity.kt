@@ -99,7 +99,7 @@ fun TextInputExample() {
 
         TextField(
             value = text,
-            onValueChange = { newText -> text = newText + "/" },
+            onValueChange = { newText -> text = newText},
             label = { Text("Enter some text") }
         )
     }
