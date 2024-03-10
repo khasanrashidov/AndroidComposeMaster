@@ -39,6 +39,7 @@ import kotlin.random.Random
 
 /**
  * # Jetpack Compose Animations
+ * https://developer.android.com/jetpack/compose/animation/introduction
  * ## State-Based Animations:
  * * *animateContentSize()*: Automatically animate the size change of a composable when its content changes.
  * * *animateAsState()*: Animate changes to a value, e.g., animateFloatAsState, animateColorAsState.
