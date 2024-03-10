@@ -39,7 +39,7 @@ import kotlin.random.Random
 
 /**
  * # Jetpack Compose Animations
- * https://developer.android.com/jetpack/compose/animation/introduction
+ * ![Jetpack Compose Animations](https://developer.android.com/jetpack/compose/animation/introduction)
  * ## State-Based Animations:
  * * *animateContentSize()*: Automatically animate the size change of a composable when its content changes.
  * * *animateAsState()*: Animate changes to a value, e.g., animateFloatAsState, animateColorAsState.
@@ -65,7 +65,21 @@ import kotlin.random.Random
  * * *Decay*: Decay animations that mimic natural slowing down.
  * ## Choreographing Multiple Animations:
  * * Coordinating multiple animations together, for instance, animating several properties of a composable in parallel or in sequence.
+ * ## Summary
+ *
+ * | API Name                      | Description                                            | Example Use Case                              |
+ * |-------------------------------|--------------------------------------------------------|-----------------------------------------------|
+ * | `animateContentSize`          | Animates the size change of a component.               | Smooth resizing of a text box.                |
+ * | `animateColor`                | Animates color properties.                             | Transition between color themes.              |
+ * | `animateDp`                   | Animates dimension properties measured in `dp`.        | Moving a component on the screen.             |
+ * | `animateFloat`                | Animates floating-point properties.                    | Creating a custom progress indicator.         |
+ * | `Crossfade`                   | Creates a crossfade animation between two composables. | Transitioning between different screens/views.|
+ * | `AnimatedVisibility`          | Animates the visibility change of a component.         | Showing or hiding UI elements with effects.   |
+ * | `rememberInfiniteTransition`  | Creates an infinite animation.                         | Creating a loading spinner or pulsating effect.|
+ * | `updateTransition`            | Manages complex state-based animations.                | Coordinating multiple animations in a UI state change. |
+ *
  */
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
