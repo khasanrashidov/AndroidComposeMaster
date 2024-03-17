@@ -25,19 +25,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApp()
+            MaterialTheme {
+                MyApp()
+            }
         }
     }
 }
 
 @Composable
 fun MyApp() {
-    MaterialTheme {
-        val navController = rememberNavController()
-        NavHost(navController = navController, startDestination = "screen1") {
-            composable("screen1") { Screen1(navController) }
-            composable("screen2") { Screen2(navController) }
-        }
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "screen1") {
+        composable("screen1") { Screen1(navController) }
+        composable("screen2") { Screen2(navController) }
     }
 }
 

@@ -173,11 +173,11 @@ fun AnimatedVisibilityCookbook_ModifierAlpha() {
 @Composable
 fun AnimateBackgroundColor() {
     var animateBackgroundColor by remember {
-        mutableStateOf(true)
+        mutableStateOf(false)
     }
-    LaunchedEffect(Unit) {
-        animateBackgroundColor = true
-    }
+//    LaunchedEffect(Unit) {
+//        animateBackgroundColor = true
+//    }
     // [START android_compose_animate_background_color]
     val animatedColor by animateColorAsState(
         if (animateBackgroundColor) colorGreen else colorBlue,

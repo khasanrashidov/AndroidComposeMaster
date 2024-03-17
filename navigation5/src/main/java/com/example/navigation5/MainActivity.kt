@@ -75,7 +75,14 @@ fun Screen2(navController: NavHostController) {
 
 @Composable
 fun Screen3(navController: NavHostController) {
-    Button(onClick = { navController.popBackStack("screen1", true) }) {
-        Text("Pop back to Screen 1 (inclusive = true)")
+    Column {
+        Button(onClick = { navController.popBackStack("screen1", false) }) {
+            Text("Pop back to Screen 1 (inclusive = false)")
+        }
+        Button(onClick = { navController.popBackStack("screen1", true) }) {
+            Text("Pop back to Screen 1 (inclusive = true)")
+        }
+
     }
+
 }

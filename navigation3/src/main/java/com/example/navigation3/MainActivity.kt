@@ -27,49 +27,49 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApp()
+            ComposeMasterTheme {
+                MyApp()
+            }
         }
     }
 }
 
 @Composable
 fun MyApp() {
-    ComposeMasterTheme {
         // A surface container using the 'background' color from the theme
-        Surface(color = MaterialTheme.colors.background) {
-            val navController = rememberNavController()
-            val items = listOf("Home", "Profile", "Settings")
-            val currentRoute = currentRoute(navController)
+    Surface(color = MaterialTheme.colors.background) {
+        val navController = rememberNavController()
+        val items = listOf("Home", "Profile", "Settings")
+        val currentRoute = currentRoute(navController)
 
-            Scaffold(
-                bottomBar = {
-                    BottomNavigation {
-                        items.forEach { item ->
-                            BottomNavigationItem(
-                                icon = { Icon(Icons.Default.Home, contentDescription = item) },
-                                label = { Text(item) },
-                                selected = currentRoute == item,
-                                onClick = {
-                                    if (item != currentRoute) {
-                                        navController.navigate(item)
-                                    }
+        Scaffold(
+            bottomBar = {
+                BottomNavigation {
+                    items.forEach { item ->
+                        BottomNavigationItem(
+                            icon = { Icon(Icons.Default.Home, contentDescription = item) },
+                            label = { Text(item) },
+                            selected = currentRoute == item,
+                            onClick = {
+                                if (item != currentRoute) {
+                                    navController.navigate(item)
                                 }
-                            )
-                        }
+                            }
+                        )
                     }
                 }
-            ) {paddingValues -> Modifier.padding(paddingValues)
-                NavHost(navController = navController, startDestination = "Home") {
-                    composable("Home") { HomeScreen(navController) }
-                    composable("Profile") { ProfileScreen(navController) }
-                    composable("Settings") { SettingsScreen(navController) }
-                    composable(
-                        "Details/{id}",
-                        arguments = listOf(navArgument("id") { type = NavType.IntType })
-                    ) { backStackEntry ->
-                        val id = backStackEntry.arguments?.getInt("id")
-                        DetailsScreen(id)
-                    }
+            }
+        ) {paddingValues -> Modifier.padding(paddingValues)
+            NavHost(navController = navController, startDestination = "Home") {
+                composable("Home") { HomeScreen(navController) }
+                composable("Profile") { ProfileScreen(navController) }
+                composable("Settings") { SettingsScreen(navController) }
+                composable(
+                    "Details/{id}",
+                    arguments = listOf(navArgument("id") { type = NavType.IntType })
+                ) { backStackEntry ->
+                    val id = backStackEntry.arguments?.getInt("id")
+                    DetailsScreen(id)
                 }
             }
         }
@@ -93,10 +93,10 @@ fun HomeScreen(navController: NavHostController) {
     ) {
         Text("Home Screen")
         Button(
-            onClick = { navController.navigate("Details/42") },
+            onClick = { navController.navigate("Details/2024") },
             modifier = Modifier.padding(16.dp)
         ) {
-            Text("Navigate to Details with ID 42")
+            Text("Navigate to Details with ID 2024")
         }
     }
 }
