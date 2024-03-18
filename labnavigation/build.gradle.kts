@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.navigation6"
+    namespace = "com.example.labnavigation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.navigation6"
+        applicationId = "com.example.labnavigation"
         minSdk = 34
         targetSdk = 34
         versionCode = 1
@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -66,5 +65,6 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.02"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.3")
+
 }
