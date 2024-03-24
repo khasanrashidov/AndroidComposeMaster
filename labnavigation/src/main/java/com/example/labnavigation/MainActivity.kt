@@ -118,7 +118,8 @@ fun MyBottomBar(navController: NavHostController) {
             selected = false,
             icon = { Icon(Icons.Filled.Search, contentDescription = "Search" )},
             onClick = { /*TODO*/ },
-            label = { Text("Search") }
+            label = { Text("Search") },
+//            onClickLabel = { /*TODO*/ }
         )
     }
 }
