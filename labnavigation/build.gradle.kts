@@ -65,6 +65,6 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.02"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.3")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.4")
 
 }

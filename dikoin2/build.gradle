@@ -68,7 +68,7 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     // Livedata
-    implementation 'androidx.compose.runtime:runtime-livedata:1.6.3'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.6.4'
     // Koin
     implementation "org.koin:koin-android:3.1.0"
     implementation "org.koin:koin-androidx-viewmodel:3.1.0"

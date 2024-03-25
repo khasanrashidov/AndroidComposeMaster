@@ -72,7 +72,7 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.51'
 //    implementation "com.google.dagger:hilt-navigation-compose:1.0.0-alpha03"
     // Livedata
-    implementation 'androidx.compose.runtime:runtime-livedata:1.6.3'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.6.4'
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
 
