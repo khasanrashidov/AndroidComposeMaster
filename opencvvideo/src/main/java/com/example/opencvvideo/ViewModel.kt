@@ -64,8 +64,14 @@ class ImageViewModel : ViewModel() {
                     bitmap?.let {
                         val mat = Mat()
                         Utils.bitmapToMat(it, mat)
+
                         // Apply your OpenCV processing here, e.g., convert to grayscale
 //                        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2GRAY)
+//                        Imgproc.GaussianBlur(mat, mat, org.opencv.core.Size(5.0, 5.0), 0.0, 1.0)
+//                        Imgproc.Canny(mat, mat, 50.0, 150.0)
+
+
+
                         val processedBitmap =
                             Bitmap.createBitmap(mat.cols(), mat.rows(), Bitmap.Config.ARGB_8888)
                         Utils.matToBitmap(mat, processedBitmap)

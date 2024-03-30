@@ -101,8 +101,8 @@ class ImageViewModel : ViewModel(), CameraBridgeViewBase.CvCameraViewListener2 {
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame): Mat {
         val mat = inputFrame.rgba()
         // Apply your OpenCV processing here, e.g., convert to grayscale
-        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2GRAY)
-        Imgproc.Canny(mat, mat, 50.0, 150.0)
+//        Imgproc.cvtColor(mat, mat, Imgproc.COLOR_RGB2GRAY)
+//        Imgproc.Canny(mat, mat, 50.0, 150.0)
         val processedBitmap = Bitmap.createBitmap(mat.cols(), mat.rows(), Bitmap.Config.ARGB_8888)
         Utils.matToBitmap(mat, processedBitmap)
         _imageBitmap.postValue(processedBitmap) // Post the processed frame
