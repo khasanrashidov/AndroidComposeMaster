@@ -23,7 +23,7 @@ class CounterController(private val model: CounterModel) {
 
 // View (Jetpack Compose)
 @Composable
-fun CounterView(model: CounterModel, controller: CounterController) {
+fun CounterScreen(model: CounterModel, controller: CounterController) {
     var count by remember { mutableStateOf(0) }
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
