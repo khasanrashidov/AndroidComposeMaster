@@ -53,11 +53,6 @@ fun MyApp(db: UserRoomDatabase) {
     val lastNameInput = remember { mutableStateOf(TextFieldValue("")) }
 
     Column {
-        LazyColumn {
-            itemsIndexed(userList) { _, user ->
-                Text(text = "${user.firstName} ${user.lastName}")
-            }
-        }
         Row {
             TextField(
                 value = firstNameInput.value,
@@ -91,6 +86,11 @@ fun MyApp(db: UserRoomDatabase) {
                 viewModel.deleteAllUsers()
             }) {
                 Text(text = "Delete All")
+            }
+        }
+        LazyColumn {
+            itemsIndexed(userList) { _, user ->
+                Text(text = "${user.firstName} ${user.lastName}")
             }
         }
     }

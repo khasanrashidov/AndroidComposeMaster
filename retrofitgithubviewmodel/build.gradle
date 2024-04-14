@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.retrofitgithubviewmodel"
-        minSdk 24
+        minSdk 33
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -37,7 +37,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.3.2'
+        kotlinCompilerExtensionVersion '1.5.7'
     }
     packagingOptions {
         resources {

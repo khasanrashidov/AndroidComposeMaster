@@ -46,16 +46,20 @@ class MainActivity : ComponentActivity() {
 fun MyApp(db: UserRoomDatabase) {
     val userDao = db.userDao()
 
-    // Instantiate UserViewModel directly
-    // Not recommended because it does not take advantage of the lifecycle-aware capabilities
-    // provided by the viewModel() function.
-    // val viewModel = remember { UserViewModel(userDao) }
+/**
+ *  # Instantiate UserViewModel directly
+ *      Not recommended because it does not take advantage of the lifecycle-aware capabilities
+ *      provided by the viewModel() function.
+ *      val viewModel = remember { UserViewModel(userDao) }
+ *
+ *  # Instantiate UserViewModel by Factory
+ *     Using a ViewModel factory allows you to create ViewModels with custom constructor parameters
+ *      and manage their dependencies more easily. This is especially useful when working
+ *      with dependency injection frameworks like Hilt or Dagger, as it simplifies passing
+ *      dependencies to your ViewModel instances.
+ *
+ */
 
-    // Instantiate UserViewModel by Factory
-    //Using a ViewModel factory allows you to create ViewModels with custom constructor parameters
-    // and manage their dependencies more easily. This is especially useful when working
-    // with dependency injection frameworks like Hilt or Dagger, as it simplifies passing
-    // dependencies to your ViewModel instances.
     val viewModel: UserViewModel = viewModel(factory = UserViewModelFactory(userDao))
 
     val userList by viewModel.users.collectAsState(initial = emptyList())
@@ -63,11 +67,6 @@ fun MyApp(db: UserRoomDatabase) {
     val lastNameInput = remember { mutableStateOf(TextFieldValue("")) }
 
     Column {
-        LazyColumn {
-            itemsIndexed(userList) { _, user ->
-                Text(text = "${user.firstName} ${user.lastName}")
-            }
-        }
         Row {
             TextField(
                 value = firstNameInput.value,
@@ -101,6 +100,11 @@ fun MyApp(db: UserRoomDatabase) {
                 viewModel.deleteAllUsers()
             }) {
                 Text(text = "Delete All")
+            }
+        }
+        LazyColumn {
+            itemsIndexed(userList) { _, user ->
+                Text(text = "${user.firstName} ${user.lastName}")
             }
         }
     }
