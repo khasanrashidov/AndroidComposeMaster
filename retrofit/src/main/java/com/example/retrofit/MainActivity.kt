@@ -72,9 +72,3 @@ fun UsersList(users: List<User>) {
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    FetchUsersScreen()
-}

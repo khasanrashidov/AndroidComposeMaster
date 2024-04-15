@@ -7,12 +7,17 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import java.security.acl.Owner
 
 data class GitHubRepo(
     val id: Int,
     val name: String,
     val description: String?,
-    val html_url: String
+    val html_url: String,
+    val full_name: String,
+    val private: Boolean,
+    val updated_at: String,
+    val size: Int,
 )
 
 interface GitHubApi {

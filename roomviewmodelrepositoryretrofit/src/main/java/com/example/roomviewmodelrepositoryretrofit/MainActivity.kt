@@ -48,9 +48,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(db: UserRoomDatabase) {
     val userDao = db.userDao()
-    Log.d("MyApp", "userDao: $userDao")
     val userRepository = UserRepository(userDao)
-    Log.d("MyApp", "userRepository: $userRepository")
     val viewModel: UserViewModel = viewModel(factory = UserViewModelFactory(userRepository))
 
     val roomUserList by viewModel.roomUsers.collectAsState(initial = emptyList())
@@ -58,11 +56,12 @@ fun MyApp(db: UserRoomDatabase) {
     val githubUser by viewModel.githubUsers.collectAsState(initial = null)
     val firstNameInput = remember { mutableStateOf(TextFieldValue("")) }
     val lastNameInput = remember { mutableStateOf(TextFieldValue("")) }
+    val retrofitUsernameInput = remember { mutableStateOf(TextFieldValue("")) }
     val githubUsernameInput = remember { mutableStateOf(TextFieldValue("")) }
 
 
     Column {
-        Text(text = "Room Users:")
+        Text(text = "Room Demo:")
         LazyColumn {
             itemsIndexed(roomUserList) { _, user ->
                 Text(text = "${user.firstName} ${user.lastName}")
@@ -80,13 +79,7 @@ fun MyApp(db: UserRoomDatabase) {
                 label = { Text("Last Name") }
             )
         }
-        Row {
-            TextField(
-                value = githubUsernameInput.value,
-                onValueChange = { githubUsernameInput.value = it },
-                label = { Text("GitHub Username") }
-            )
-        }
+
         Row {
             Button(onClick = {
                 viewModel.insertUser(
@@ -109,23 +102,41 @@ fun MyApp(db: UserRoomDatabase) {
             }) {
                 Text(text = "Delete All")
             }
-            LazyColumn {
-                itemsIndexed(retrofitUserList) { _, user ->
-                    Text(text = "${user.firstName} ${user.lastName}")
-                }
+
+        }
+        Text(text = "Retrofit Demo:")
+        LazyColumn {
+            itemsIndexed(retrofitUserList) { _, user ->
+                Text(text = "${user.firstName} ${user.lastName}")
             }
+        }
+        Row{
+            TextField(
+                value = retrofitUsernameInput.value,
+                onValueChange = { retrofitUsernameInput.value = it },
+                label = { Text("Retrofit Username") }
+            )
+        }
+        Row {
             Button(onClick = { viewModel.fetchRetrofitUsers() }) {
                 Text(text = "Fetch Retrofit Users")
             }
-            Text(text = "GitHub User:")
+        }
+        Text(text = "GitHub Demo:")
+        LazyColumn {
             githubUser?.let { user ->
-                Text(text = "${user.login} - ${user.name}")
+                //Text(text = "${user.login} - ${user.name}")
             }
+        }
+
+        Row {
             TextField(
                 value = githubUsernameInput.value,
                 onValueChange = { githubUsernameInput.value = it },
                 label = { Text("GitHub Username") }
             )
+        }
+        Row {
             Button(onClick = {
                 if (githubUsernameInput.value.text.isNotEmpty()) {
                     viewModel.fetchGithubUser(githubUsernameInput.value.text)

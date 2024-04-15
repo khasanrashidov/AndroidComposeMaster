@@ -25,7 +25,7 @@ data class User(
 @Dao
 interface UserDao {
     @Query("SELECT * FROM user_table ORDER BY uid ASC")
-    fun getAll(): Flow<List<User>>
+    fun getAll(): Flow<List<User>> // execute when DB chaged
 
     @Query("SELECT * FROM user_table WHERE uid IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): Flow<List<User>>

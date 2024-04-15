@@ -13,7 +13,7 @@ class UserRepository(private val userDao: UserDao) {
 
     suspend fun deleteUser(firstName: String, lastName: String) {
         val user = userDao.findByName(firstName, lastName)
-        user?.let { userDao.delete(it) }
+        user.let { userDao.delete(it) }
     }
 
     suspend fun deleteAllUsers() {
