@@ -25,8 +25,10 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             try {
                 userRepository.fetchGithubUser(username).first()
+//                githubUsers.value = username
             } catch (e: Exception) {
-                // Handle the error or update the state as needed
+//                Log.e("ViewModel", "Failed to fetch GitHub user", e)
+                // Handle error state here
             }
         }
     }

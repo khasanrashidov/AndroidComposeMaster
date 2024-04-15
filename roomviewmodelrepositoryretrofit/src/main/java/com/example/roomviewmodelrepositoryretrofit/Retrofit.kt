@@ -30,7 +30,7 @@ interface ApiService {
 
 fun provideRetrofit(): ApiService {
     val retrofit = Retrofit.Builder()
-        .baseUrl("htts://reqres.in")
+        .baseUrl("https://reqres.in")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

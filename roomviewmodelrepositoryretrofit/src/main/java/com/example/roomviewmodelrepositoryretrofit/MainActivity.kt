@@ -54,8 +54,8 @@ fun MyApp(db: UserRoomDatabase) {
     val viewModel: UserViewModel = viewModel(factory = UserViewModelFactory(userRepository))
 
     val roomUserList by viewModel.roomUsers.collectAsState(initial = emptyList())
-//    val retrofitUserList by viewModel.retrofitUsers.collectAsState(initial = emptyList())
-//    val githubUser by viewModel.githubUsers.collectAsState(initial = null)
+    val retrofitUserList by viewModel.retrofitUsers.collectAsState(initial = emptyList())
+    val githubUser by viewModel.githubUsers.collectAsState(initial = null)
     val firstNameInput = remember { mutableStateOf(TextFieldValue("")) }
     val lastNameInput = remember { mutableStateOf(TextFieldValue("")) }
     val githubUsernameInput = remember { mutableStateOf(TextFieldValue("")) }
@@ -68,16 +68,6 @@ fun MyApp(db: UserRoomDatabase) {
                 Text(text = "${user.firstName} ${user.lastName}")
             }
         }
-//        Text(text = "Retrofit Users:")
-//        LazyColumn {
-//            itemsIndexed(retrofitUserList) { _, user ->
-//                Text(text = "${user.firstName} ${user.lastName}")
-//            }
-//        }
-//        Text(text = "GitHub User:")
-//        githubUser?.let { user ->
-//            Text(text = "${user.login} - ${user.name}")
-//        }
         Row {
             TextField(
                 value = firstNameInput.value,
@@ -119,16 +109,31 @@ fun MyApp(db: UserRoomDatabase) {
             }) {
                 Text(text = "Delete All")
             }
-//            Button(onClick = {
-//                viewModel.fetchRetrofitUsers()
-//            }) {
-//                Text(text = "Fetch Retrofit Users")
-//            }
-//            Button(onClick = {
-//                viewModel.fetchGithubUser(githubUsernameInput.value.text)
-//            }) {
-//                Text(text = "Fetch GitHub User")
-//            }
+            LazyColumn {
+                itemsIndexed(retrofitUserList) { _, user ->
+                    Text(text = "${user.firstName} ${user.lastName}")
+                }
+            }
+            Button(onClick = { viewModel.fetchRetrofitUsers() }) {
+                Text(text = "Fetch Retrofit Users")
+            }
+            Text(text = "GitHub User:")
+            githubUser?.let { user ->
+                Text(text = "${user.login} - ${user.name}")
+            }
+            TextField(
+                value = githubUsernameInput.value,
+                onValueChange = { githubUsernameInput.value = it },
+                label = { Text("GitHub Username") }
+            )
+            Button(onClick = {
+                if (githubUsernameInput.value.text.isNotEmpty()) {
+                    viewModel.fetchGithubUser(githubUsernameInput.value.text)
+                }
+            }) {
+                Text(text = "Fetch GitHub User")
+            }
+
         }
     }
 }
