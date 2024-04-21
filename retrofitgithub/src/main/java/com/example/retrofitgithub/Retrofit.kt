@@ -5,7 +5,14 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.HEAD
+import retrofit2.http.OPTIONS
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import java.security.acl.Owner
 
@@ -23,6 +30,18 @@ data class GitHubRepo(
 interface GitHubApi {
     @GET("users/{user}/repos")
     suspend fun getUserRepos(@Path("user") user: String): Response<List<GitHubRepo>>
+    @POST("users/{user}/repos")
+    suspend fun createRepo(@Path("user") user: String, @Body repo: GitHubRepo): Response<GitHubRepo>
+    @PUT("repos/{owner}/{repo}")
+//    suspend fun updateRepo(@Path("owner") owner: String, @Path("repo") repo: String, @Body repo: GitHubRepo): Response<GitHubRepo>
+//    @DELETE("repos/{owner}/{repo}")
+    suspend fun deleteRepo(@Path("owner") owner: String, @Path("repo") repo: String): Response<Unit>
+//    @PATCH("repos/{owner}/{repo}")
+//    suspend fun updateRepoPartial(@Path("owner") owner: String, @Path("repo") repo: String, @Body repo: GitHubRepo): Response<GitHubRepo>
+//    @HEAD("repos/{owner}/{repo}")
+//    suspend fun getRepoHeaders(@Path("owner") owner: String, @Path("repo") repo: String): Response<Void>
+    @OPTIONS("repos/{owner}/{repo}")
+    suspend fun getRepoOptions(@Path("owner") owner: String, @Path("repo") repo: String): Response<Void>
 }
 
 

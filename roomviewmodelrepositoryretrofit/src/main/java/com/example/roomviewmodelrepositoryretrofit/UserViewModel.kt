@@ -15,12 +15,14 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     val retrofitUsers: Flow<List<User>> = userRepository.retrofitUsers
     val githubUsers: StateFlow<GithubUser?> = userRepository.githubUsers
 
+    // Retrofit
     fun fetchRetrofitUsers() {
         viewModelScope.launch {
             userRepository.fetchRetrofitUsers()
         }
     }
 
+    // Retrofit GitHub
     fun fetchGithubUser(username: String) {
         viewModelScope.launch {
             try {
