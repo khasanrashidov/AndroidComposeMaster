@@ -63,8 +63,9 @@ fun SideEffectDemo() {
         val context = LocalContext.current
 
         //1. LaunchedEffect to perform an action on button press
-        val launchedEffectCount by remember { mutableStateOf(0) }
+        var launchedEffectCount by remember { mutableStateOf(0) }
         LaunchedEffect(key1=count) {
+            launchedEffectCount += 1
             Toast.makeText(context, "[LaunchedEffect] Count updated to $count", Toast.LENGTH_SHORT).show()
         }
 

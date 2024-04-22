@@ -66,7 +66,10 @@ fun UIStateManager(viewModel: UIStateManagerViewModel = viewModel()) {
         }
     }
 
-    // Collecting SharedFlow - this is an event-based flow, might not have a value
+    // 1. val sharedFlowState by viewModel.sharedFlow.collectAsState("No SharedFlow messages yet...")
+    // It collects the latest value emitted by the Flow and represents it as a State object.
+    // This is useful when you want to observe a Flow and update the UI when the Flow emits a new value.
+    // 2. all values emitted by the SharedFlow are collected, even when the composable is not active
     var sharedFlowState by remember { mutableStateOf("No SharedFlow messages yet...") }
     LaunchedEffect(Unit) {
         viewModel.sharedFlow.collect { newValue ->

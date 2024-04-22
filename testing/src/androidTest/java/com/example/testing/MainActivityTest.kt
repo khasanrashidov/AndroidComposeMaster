@@ -21,12 +21,25 @@ class MainActivityTest {
         }
 
         // Verify "Counter: 0" text is displayed
-        composeTestRule.onNodeWithText("Counter: 0").assertIsDisplayed()
+        composeTestRule
+            .onNodeWithText("Counter: 0")
+            .assertExists()
+            .assertIsDisplayed()
+        Thread.sleep(10000)
 
         // Click on "Increase Counter" button
-        composeTestRule.onNodeWithText("Increase Counter").performClick()
+        composeTestRule
+            .onNodeWithText("Increase Counter")
+            .assertExists()
+            .performClick()
+        Thread.sleep(10000)
 
         // Verify "Counter: 1" text is displayed
-        composeTestRule.onNodeWithText("Counter: 1").assertIsDisplayed()
+        composeTestRule
+            .onNodeWithText("Counter: 1")
+            .assertExists()
+            .assertIsDisplayed()
+        // keep the screen
+        Thread.sleep(10000)
     }
 }
