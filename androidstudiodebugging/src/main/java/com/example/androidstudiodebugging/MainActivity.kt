@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
 /**
  # Android Studio Debugging
 ## Setting Breakpoints:
-Teach how to set breakpoints in DebuggingExampleScreen, for example on the line counter++.
+Set breakpoints in DebuggingExampleScreen, for example on the line counter++.
 
 ## Inspecting Variables:
 Demonstrate how to inspect the values of counter and textToShow when the breakpoint is hit.
@@ -66,9 +66,14 @@ fun DebuggingExampleScreen() {
             Log.d("DebuggingExample", "Counter value: $counter") // Log statement
 
             textToShow = if (counter % 2 == 0) {
+                Log.d("DebuggingExample", "Even number") // Log statement
+                Log.d("DebuggingExample", "textToShow: $textToShow")
+                Log.d("DebuggingExample", "Displayed text: $textToShow")
                 "Even number"
             } else {
                 // Intentional bug for demonstration
+                Log.d("DebuggingExample", "textToShow is null") // Log statement
+                Log.d("DebuggingExample", "Displayed text: $textToShow")
                 null
             } ?: "Oops! Encountered a null."
 

@@ -62,15 +62,17 @@ fun SideEffectDemo() {
         var count by remember { mutableStateOf(0) }
         val context = LocalContext.current
 
-        //1. LaunchedEffect to perform an action on button press
+        //1. rememberUpdatedState to keep the latest state
+        val currentCount by rememberUpdatedState(count)
+
+        //2. LaunchedEffect to perform an action on button press
         var launchedEffectCount by remember { mutableStateOf(0) }
         LaunchedEffect(key1=count) {
-            launchedEffectCount += 1
-            Toast.makeText(context, "[LaunchedEffect] Count updated to $count", Toast.LENGTH_SHORT).show()
+            launchedEffectCount += 10
+            Toast.makeText(context, "[2. LaunchedEffect] Count updated to $count", Toast.LENGTH_SHORT).show()
         }
 
-        //2. rememberUpdatedState to keep the latest state
-        val currentCount by rememberUpdatedState(count)
+
 
         //3. DisposableEffect for cleanup demonstration
         var resourceStatus by remember { mutableStateOf("No resource allocated") }
@@ -91,10 +93,9 @@ fun SideEffectDemo() {
             value = "Data loaded"
         })
 
-        // rememberCoroutineScope for a scope that can launch jobs
-        val scope = rememberCoroutineScope()
 
-        //5. derivedStateOf to compute a value based on other states
+
+        //6. derivedStateOf to compute a value based on other states
         val isEven = remember(count) {
             derivedStateOf { count % 2 == 0 }
         }
@@ -103,17 +104,21 @@ fun SideEffectDemo() {
         Button(onClick = { count += 1 }) {
             Text("Increment Counter")
         }
-        Text("Counter: $count (Updated State: $currentCount)")
+        Text("Counter: $count)" )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text( "[1. rememberUpdatedState] Updated State: $currentCount)")
 
         Spacer(Modifier.height(8.dp))
 
+        //5. rememberCoroutineScope for a scope that can launch jobs
+        val scope = rememberCoroutineScope()
         Button(onClick = {
             scope.launch {
                 delay(500)
                 count += 1
             }
         }) {
-            Text("Increment in CoroutineScope")
+            Text("[5. rememberCoroutineScope] Increment in CoroutineScope")
         }
 
         Spacer(Modifier.height(8.dp))
@@ -124,10 +129,10 @@ fun SideEffectDemo() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        Text("[LaunchedEffect] triggered update: $launchedEffectCount")
-        Text("[Disposable Effect] Resource Status: $resourceStatus")
-        Text("[produceState] Async data: ${asyncData.value}")
-        Text("[deriveState] Is the count even? ${isEven.value}")
+        Text("[2. LaunchedEffect] triggered update: $launchedEffectCount")
+        Text("[3. Disposable Effect] Resource Status: $resourceStatus")
+        Text("[4. produceState] Async data: ${asyncData.value}")
+        Text("[6. deriveState] Is the count even? ${isEven.value}")
 
         Spacer(Modifier.height(8.dp))
     }
