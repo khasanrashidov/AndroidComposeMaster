@@ -22,20 +22,24 @@ import kotlinx.coroutines.launch
 import android.widget.Toast
 
 /**
- * Summary of Jetpack Compose side effect APIs and their uses.
+ * # Side Effects in Jetpack Compose
+ * In programming, a side effect refers to a situation where an operation, function, or expression modifies a state outside its local environment, or has an observable interaction with the outside world besides returning a value.
  *
- * | API                  | Description |
- * |----------------------|-------------|
- * | `LaunchedEffect`     | Used to launch side effects (like coroutines) that should run when specific keys change or when a Composable enters the composition. It automatically cancels the coroutine when the Composable leaves the composition or the keys change. |
- * | `rememberUpdatedState` | Remembers the latest value passed to it and provides a stable reference that always points to the latest value. Useful when you have a callback that needs to access the most current state. |
- * | `DisposableEffect`   | Used for managing cleanup logic for side effects within a Composable. It runs its cleanup logic when the Composable leaves the composition or when the specified keys change. |
- * | `produceState`       | Used to produce state in a Composable based on asynchronous operations or from a Flow. It's useful for managing state that depends on external data sources. |
- * | `CoroutineScope`     | Not specifically a Compose API but often used within Compose to launch coroutines tied to the lifecycle of a Composable. |
- * | `rememberCoroutineScope` | Creates and remembers a CoroutineScope tied to the lifecycle of the Composable. This scope is cancelled when the Composable is removed from the composition. Ideal for launching tasks that should be cancelled with the UI. |
- * | `derivedStateOf`     | Allows creating a derived state that automatically updates when any of the states it depends on change. This helps in minimizing recompositions by only updating when necessary. |
+ * For instance, modifying a global variable, changing the value of a parameter, writing data to a database, printing to the screen or a file, or altering the hardware state can all be considered side effects.
  *
+ * In the context of Jetpack Compose, side effects are operations that interact with the outside world. They are used to handle tasks such as launching coroutines, managing cleanup logic, producing state based on asynchronous operations, and more. Jetpack Compose provides several APIs to handle side effects, such as `LaunchedEffect`, `DisposableEffect`, `rememberCoroutineScope`, `produceState`, and `derivedStateOf`.
+ *
+ * # Summary of Jetpack Compose side effect APIs and their uses.
+ *
+ * | API                  | Lifecycle-Aware | Coroutine | Suspendable | Requires Key | Returns Value | Used for Cleanup | Description |
+ * |----------------------|-----------------|-----------|-------------|--------------|---------------|------------------|-------------|
+ * | `LaunchedEffect`     | Yes             | Yes       | Yes         | Yes          | No            | No               | Used to launch side effects (like coroutines) that should run when specific keys change or when a Composable enters the composition. It automatically cancels the coroutine when the Composable leaves the composition or the keys change. |
+ * | `rememberUpdatedState` | No            | No        | No          | No           | Yes           | No               | Remembers the latest value passed to it and provides a stable reference that always points to the latest value. Useful when you have a callback that needs to access the most current state. |
+ * | `DisposableEffect`   | Yes             | No        | No          | Yes          | No            | Yes              | Used for managing cleanup logic for side effects within a Composable. It runs its cleanup logic when the Composable leaves the composition or when the specified keys change. |
+ * | `produceState`       | Yes             | Yes       | Yes         | No           | Yes           | No               | Used to produce state in a Composable based on asynchronous operations or from a Flow. It's useful for managing state that depends on external data sources. |
+ * | `rememberCoroutineScope` | Yes         | Yes       | No          | No           | No            | No               | Creates and remembers a CoroutineScope tied to the lifecycle of the Composable. This scope is cancelled when the Composable is removed from the composition. Ideal for launching tasks that should be cancelled with the UI. |
+ * | `derivedStateOf`     | No              | No        | No          | No           | Yes           | No               | Allows creating a derived state that automatically updates when any of the states it depends on change. This helps in minimizing recompositions by only updating when necessary. |
  */
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

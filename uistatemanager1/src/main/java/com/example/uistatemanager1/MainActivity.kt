@@ -36,13 +36,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UIStateManager(viewModel: UIStateManagerViewModel = viewModel()) {
-    // Observing LiveData
+    //1. Observing LiveData
     val liveDataState by viewModel.liveData.observeAsState("Waiting for LiveData...")
 
-    // Collecting StateFlow
+    //2. Collecting StateFlow
     val stateFlowState by viewModel.stateFlow.collectAsState()
 
-    // Collecting SharedFlow for events
+    //3. Collecting SharedFlow for events
     var lastEvent by remember { mutableStateOf("No events yet...") }
     LaunchedEffect(viewModel) {
         viewModel.eventFlow.collect { event ->
@@ -50,7 +50,7 @@ fun UIStateManager(viewModel: UIStateManagerViewModel = viewModel()) {
         }
     }
 
-    // Collecting a regular Flow
+    //4. Collecting a regular Flow
     var flowValue by remember { mutableStateOf("Starting...") }
     LaunchedEffect(viewModel) {
         viewModel.numberFlow.collect { number ->
@@ -60,17 +60,17 @@ fun UIStateManager(viewModel: UIStateManagerViewModel = viewModel()) {
 
     Column {
         Button(onClick = { viewModel.updateLiveData() }) {
-            Text("Update LiveData")
+            Text("1. Update LiveData")
         }
         Text(liveDataState)
 
         Button(onClick = { viewModel.updateStateFlow() }) {
-            Text("Update StateFlow")
+            Text("2. Update StateFlow")
         }
         Text(stateFlowState)
 
         Button(onClick = { viewModel.emitEvent() }) {
-            Text("Emit Event")
+            Text("3. Emit Event")
         }
         Text("Last event: $lastEvent")
 

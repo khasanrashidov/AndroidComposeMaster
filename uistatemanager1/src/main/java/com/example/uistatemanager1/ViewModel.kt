@@ -16,19 +16,19 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class UIStateManagerViewModel : ViewModel() {
-    // LiveData for UI updates sensitive to lifecycle states
+    //1. LiveData for UI updates sensitive to lifecycle states
     private val _liveData = MutableLiveData("Initial LiveData Value")
     val liveData: LiveData<String> = _liveData
 
-    // StateFlow for continuously updating UI with the latest state
+    //2. StateFlow for continuously updating UI with the latest state
     private val _stateFlow = MutableStateFlow("Initial StateFlow Value")
     val stateFlow: StateFlow<String> = _stateFlow.asStateFlow()
 
-    // SharedFlow for one-time event messaging like snackbars, navigation events
+    //3. SharedFlow for one-time event messaging like snackbars, navigation events
     private val _eventFlow = MutableSharedFlow<String>()
     val eventFlow: SharedFlow<String> = _eventFlow.asSharedFlow()
 
-    // Regular Flow for complex data processing that shouldn't be kept in memory
+    //4. Regular Flow for complex data processing that shouldn't be kept in memory
     val numberFlow: Flow<Int> = flow {
         for (i in 1..100000) {
             emit(i)
@@ -37,16 +37,16 @@ class UIStateManagerViewModel : ViewModel() {
     }
 
     fun updateLiveData() {
-        _liveData.value = "LiveData Updated: ${System.currentTimeMillis()}"
+        _liveData.value = "1. LiveData Updated: ${System.currentTimeMillis()}"
     }
 
     fun updateStateFlow() {
-        _stateFlow.value = "StateFlow Updated: ${System.currentTimeMillis()}"
+        _stateFlow.value = "2. StateFlow Updated: ${System.currentTimeMillis()}"
     }
 
     fun emitEvent() {
         viewModelScope.launch {
-            _eventFlow.emit("Event at ${System.currentTimeMillis()}")
+            _eventFlow.emit("3. Event at ${System.currentTimeMillis()}")
         }
     }
 }
