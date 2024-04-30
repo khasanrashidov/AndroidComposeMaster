@@ -9,3 +9,15 @@ class GreetingServiceImpl : GreetingService {
         return "Hello, $name!"
     }
 }
+
+
+// FarewellService
+interface FarewellService {
+    fun farewell(name: String): String
+}
+
+class FarewellServiceImpl : FarewellService {
+    override fun farewell(name: String): String {
+        return "Goodbye, $name!"
+    }
+}

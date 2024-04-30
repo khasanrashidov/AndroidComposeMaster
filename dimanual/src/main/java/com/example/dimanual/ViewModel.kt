@@ -1,14 +1,15 @@
 package com.example.dimanual
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GreetingViewModel(private val repository: GreetingRepository) : ViewModel() {
-    val greeting: MutableLiveData<String> = MutableLiveData()
-
+    private val _greeting = MutableLiveData<String>()
+    val greeting : LiveData<String> = _greeting
 
     fun updateGreeting(name: String) {
-        greeting.value = repository.getGreeting(name)
+        _greeting.value = repository.getGreeting(name)
     }
 }
 

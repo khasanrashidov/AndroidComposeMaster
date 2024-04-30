@@ -108,7 +108,7 @@ fun SideEffectDemo() {
         Button(onClick = { count += 1 }) {
             Text("Increment Counter")
         }
-        Text("Counter: $count)" )
+        Text("Counter: $count" )
         Spacer(modifier = Modifier.height(8.dp))
         Text( "[1. rememberUpdatedState] Updated State: $currentCount)")
 

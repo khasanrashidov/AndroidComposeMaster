@@ -9,9 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,7 +36,6 @@ class MainActivity : ComponentActivity() {
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     @Singleton
     fun provideGreetingService(): GreetingService = GreetingServiceImpl()
@@ -47,28 +43,18 @@ object AppModule {
 
 // Annotate the Application class with @HiltAndroidApp:
 @HiltAndroidApp
-class MyApplication : Application()
+class MyApp : Application()
 
 //Update your main Composable to accept the GreetingService as a parameter:
 @Composable
 fun MyApp(greetingService: GreetingService) {
-    val navController = rememberNavController()
 
-    NavHost(navController, startDestination = "greet") {
-        composable("greet") {
             Column {
+                Text(text = "Hello, World!")
                 GreetUser(greetingService, "John")
                 GreetUser(greetingService, "Jane")
             }
-        }
-    }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun MyAppPreview() {
-    val greetingService = GreetingServiceImpl()
-    MyApp(greetingService)
 }
 
 //Finally, update the GreetUser Composable to accept the GreetingService as a parameter:

@@ -1,0 +1,88 @@
+package com.example.diprinciple
+
+/**
+ * # Properties of DI
+ *
+ * Dependency Injection (DI) is a design pattern used to implement IoC (Inversion of Control),
+ * allowing programs to follow the Dependency Inversion Principle. The main reasons for using DI include:
+ *
+ * - **Reusability**: Enhances the reusability of code. Components can be reused in different contexts
+ *   by injecting dependencies that conform to the expected interfaces, rather than hard-coding specific implementations.
+ *
+ * - **Testability**: Improves testability by facilitating the injection of mock implementations during testing,
+ *   thus isolating the unit tests from external systems or complex dependencies.
+ *
+ * - **Refactoring**: Simplifies refactoring efforts by decoupling components from their dependencies,
+ *   making changes in one part of the system less likely to affect others.
+ *
+ * - **Maintainability**: Increases maintainability by organizing the system into well-defined, loosely coupled,
+ *   and easily understandable components, which simplifies ongoing development and troubleshooting.
+ *
+ * - **Scalability**: Supports better scalability by managing object lifecycles and dependencies appropriately,
+ *   which is crucial for applications that need to scale in complexity and size.
+ *
+ * - **Flexibility**: Offers flexibility in application configuration and adaptation to changing requirements
+ *   by externalizing component dependencies, enabling easier adjustments to system behavior without altering business logic.
+ */
+
+/**
+ * # DI comparisons
+ * | DI Method | Reusability | Testability | Refactoring | Maintainability | Scalability | Flexibility |
+ * |-----------|-------------|-------------|-------------|-----------------|-------------|-------------|
+ * | Manual    | High        | High        | High        | Medium          | High        | High        |
+ * | Constructor| High       | High        | High        | High            | High        | Medium      |
+ * | Field     | Medium      | Low         | Medium      | Medium          | Medium      | High        |
+ * | Hilt      | High        | High        | High        | High            | High        | High        |
+ * | Koin      | High        | High        | High        | High            | High        | High        |
+ *
+ * - **Manual**: Involves manually constructing objects and their dependencies. It gives full control over how dependencies are created and injected but requires more boilerplate code and maintenance.
+ * - **Constructor**: This is the most common form of dependency injection. The dependencies of a class are provided through its constructor.
+ * - **Field**: In this method, the dependencies are directly inserted into the fields of a class. This is often used in conjunction with a dependency injection framework that can automatically inject the dependencies.
+ * - **Hilt**: Hilt is a dependency injection library built on top of Dagger to simplify the setup process. It uses annotations to automatically set up dependencies and inject them where needed.
+ * - **Koin**: Koin is a lightweight dependency injection library that doesn't rely on annotations. It uses a DSL for configuration and is easy to set up and use.
+ */
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.diprinciple.ui.theme.ComposeMasterTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            ComposeMasterTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Greeting("Android")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    ComposeMasterTheme {
+        Greeting("Android")
+    }
+}

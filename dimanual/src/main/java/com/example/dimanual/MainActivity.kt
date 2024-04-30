@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -20,6 +19,40 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.example.dimanual.ui.theme.DependencyInjectionTheme
 
+/**
+ * Comparison of Dependency Injection Methods:
+ *
+ * | Method             | Complexity | Setup Required    | Performance | Use Cases                               |
+ * |--------------------|------------|-------------------|-------------|-----------------------------------------|
+ * | Manual Injection   | Low        | None              | Fast        | Small projects or learning purposes.    |
+ * |                    |            |                   |             | Direct control over object creation.    |
+ * | Constructor Injection | Low to Medium | Minimal     | Fast        | Medium projects. Encourages immutability|
+ * |                    |            |                   |             | and easier testing. Simpler than DI frameworks.|
+ * | Hilt               | High       | Complex           | Fast        | Large and complex Android applications. |
+ * |                    |            | Annotation-driven |             | Requires compile-time validation.       |
+ * |                    |            | with Gradle setup |             | Integrates deeply with Android lifecycle.|
+ * | Koin               | Medium     | Moderate          | Slightly slower | Projects preferring pure Kotlin.     |
+ * |                    |            | DSL-based setup   | at runtime  | Lightweight setup with runtime DI.      |
+ * |                    |            |                   |             | Simplified testing and configuration.   |
+ *
+ * ## Key:
+ * - **Complexity**: Reflects how difficult it is to learn, implement, and maintain.
+ * - **Setup Required**: Indicates the amount of configuration and setup overhead involved.
+ * - **Performance**: Relates to runtime efficiency and impact on app performance.
+ * - **Use Cases**: Suggests ideal scenarios for each method based on project size and complexity.
+ *
+ * ## Details:
+ * - **Manual Injection**: Involves manually creating each class and its dependencies. It offers
+ *   precise control but increases complexity and maintenance as the project grows.
+ * - **Constructor Injection**: Relies on passing dependencies directly into the constructor of
+ *   the class that needs them. It's simpler than using a DI framework but can still be cumbersome
+ *   for very large projects.
+ * - **Hilt**: Built on top of Dagger and optimized for Android. It provides robust dependency
+ *   management tailored to Android's architecture but requires learning Dagger's principles.
+ * - **Koin**: A lightweight DI framework that uses Kotlin's features for a clean and easy-to-use
+ *   API. It handles DI at runtime which may introduce slight performance overhead compared to compile-time frameworks.
+ */
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +64,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyApp()
+                    GreetingScreen()
                 }
             }
         }
@@ -40,17 +73,16 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun MyApp() {
-    GreetingScreen()
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
 fun GreetingScreen() {
-    val greetingRepository = GreetingRepositoryImpl()
+    // Constructor injection
+    // GreetingScreen composable function injects dependencies into GreetingViewModel
+    // Create an instance of GreetingRepository
+    val greetingRepository = GreetingRepository()
+    // Create an instance of GreetingViewModel depending on GreetingRepository
     val greetingViewModel = GreetingViewModel(greetingRepository)
 
     var inputName by remember { mutableStateOf("") }
+    val greeting by greetingViewModel.greeting.observeAsState()
 
     Column {
         TextField(
@@ -62,7 +94,6 @@ fun GreetingScreen() {
             Text("Submit")
         }
 
-        val greeting by greetingViewModel.greeting.observeAsState()
 
         greeting?.let { Text(text = it) }
     }

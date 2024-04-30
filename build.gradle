@@ -1,14 +1,24 @@
 buildscript {
     ext {
-        compose_ui_version = '1.6.5'
+        compose_ui_version = '1.6.6'
         kotlinCompilerExtensionVersion = '1.5.7'
         agp_version = '8.2.0'
+    }
+    repositories {
+        google()
+        mavenCentral()
+//        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.51.1'
     }
 }
 plugins {
     id 'com.android.application' version '8.3.2' apply false
     id 'com.android.library' version '8.0.1' apply false
-    id 'org.jetbrains.kotlin.android' version '1.9.21' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.21' apply false //compiler/kotlin 1.5.7/1.9.21, 1.5.12/1.9.23
      //HILT
     id 'com.google.dagger.hilt.android' version '2.44' apply false
 
