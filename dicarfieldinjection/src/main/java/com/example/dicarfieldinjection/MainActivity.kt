@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CarDemo() {
-    // Create an instance of Car
+    // Create an instance of Car without engine
     val car = Car()
 
     // Create an instance of Engine

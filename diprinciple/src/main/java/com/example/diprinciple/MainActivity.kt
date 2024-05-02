@@ -27,19 +27,23 @@ package com.example.diprinciple
 
 /**
  * # DI comparisons
- * | DI Method | Reusability | Testability | Refactoring | Maintainability | Scalability | Flexibility |
- * |-----------|-------------|-------------|-------------|-----------------|-------------|-------------|
- * | Manual    | High        | High        | High        | Medium          | High        | High        |
- * | Constructor| High       | High        | High        | High            | High        | Medium      |
- * | Field     | Medium      | Low         | Medium      | Medium          | Medium      | High        |
- * | Hilt      | High        | High        | High        | High            | High        | High        |
- * | Koin      | High        | High        | High        | High            | High        | High        |
+ * | DI Method | Reusability | Testability | Refactoring | Maintainability | Scalability | Flexibility | Injection Type |
+ * |-----------|-------------|-------------|-------------|-----------------|-------------|-------------|----------------|
+ * | Manual Injection |             |             |             |                 |             |             |                |
+ * | - Constructor    | High        | High        | High        | High            | High        | Medium      | Dynamic        |
+ * | - Field          | Medium      | Low         | Medium      | Medium          | Medium      | High        | Dynamic        |
+ * | - Method         | High        | High        | High        | High            | High        | High        | Dynamic        |
+ * | Framework Injection |          |             |             |                 |             |             |                |
+ * | - Hilt           | High        | High        | High        | High            | High        | High        | Static         |
+ * | - Koin           | High        | High        | High        | High            | High        | High        | Dynamic        |
+ * | - Dagger         | High        | High        | High        | High            | High        | High        | Static         |
  *
- * - **Manual**: Involves manually constructing objects and their dependencies. It gives full control over how dependencies are created and injected but requires more boilerplate code and maintenance.
  * - **Constructor**: This is the most common form of dependency injection. The dependencies of a class are provided through its constructor.
  * - **Field**: In this method, the dependencies are directly inserted into the fields of a class. This is often used in conjunction with a dependency injection framework that can automatically inject the dependencies.
- * - **Hilt**: Hilt is a dependency injection library built on top of Dagger to simplify the setup process. It uses annotations to automatically set up dependencies and inject them where needed.
- * - **Koin**: Koin is a lightweight dependency injection library that doesn't rely on annotations. It uses a DSL for configuration and is easy to set up and use.
+ * - **Method**: In this method, the dependencies are provided through a method. This is often used when the dependency is not needed throughout the object's lifetime but only for specific operations.
+ * - **Hilt**: Hilt is a dependency injection library built on top of Dagger to simplify the setup process. It uses annotations to automatically set up dependencies and inject them where needed. Hilt performs static injection.
+ * - **Koin**: Koin is a lightweight dependency injection library that doesn't rely on annotations. It uses a DSL for configuration and is easy to set up and use. Koin performs dynamic injection.
+ * - **Dagger**: Dagger is a fully static, compile-time dependency injection framework that uses annotations to define and create dependencies. Dagger performs static injection.
  */
 
 import android.os.Bundle
