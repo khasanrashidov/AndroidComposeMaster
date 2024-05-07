@@ -3,11 +3,14 @@ package com.example.camerax
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageAnalysis.*
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -25,6 +28,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.asExecutor
+import java.util.concurrent.Executors
 
 
 class MainActivity : ComponentActivity() {
@@ -73,11 +78,29 @@ fun StartCameraPreview() {
         val preview = Preview.Builder().build().also {
             it.setSurfaceProvider(previewView.surfaceProvider)
         }
+
+        // image analysis
+        val imageAnalysis = ImageAnalysis.Builder()
+            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+            .build()
+            .also {
+                Log.d("ImageAnalysis", "Analyzer set")
+                it.setAnalyzer(Dispatchers.IO.asExecutor(), ImageAnalysis.Analyzer { image ->
+                    Log.d("ImageAnalysis", "Image received")
+                    val format = image.format
+                    val width = image.width
+                    val height = image.height
+                    Log.d("ImageAnalysis", "Image format: $format, Size: ${width}x$height")
+                    image.close()
+                })
+            }
+
         val cameraSelector =
             CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
 
         cameraProvider.unbindAll()
-        cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, preview)
+        // Bind use cases to lifecycle
+        cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, preview, imageAnalysis)
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
